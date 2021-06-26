@@ -1,5 +1,7 @@
 import pytest
 import brownie
+from brownie import Contract
+from brownie import config
 
 def test_claim(user, lp_3crv, vault, accounts):
     three_gauge = accounts.at("0xbFcF63294aD7105dEa65aA58F8AE5BE2D9d0952A", force=True)
