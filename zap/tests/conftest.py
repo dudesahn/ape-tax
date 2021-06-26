@@ -1,6 +1,5 @@
 import pytest
-from itertools import chain
-
+from brownie import config, Wei, Contract, chain
 
 @pytest.fixture(scope="function", autouse=True)
 def shared_setup(fn_isolation):
@@ -13,39 +12,37 @@ def user(accounts):
 
 
 @pytest.fixture
-def crv(interface):
-    return interface.ERC20("0xD533a949740bb3306d119CC777fa900bA034cd52")
+def crv():
+    return Contract("0xD533a949740bb3306d119CC777fa900bA034cd52")
 
 
 @pytest.fixture
-def lp_3crv(interface):
-    return interface.ERC20("0x6c3F90f043a72FA612cbac8115EE7e52BDe6E490")
+def lp_3crv():
+    return Contract("0x6c3F90f043a72FA612cbac8115EE7e52BDe6E490")
+
+@pytest.fixture
+def y3crv():
+    return Contract("0x84E13785B5a27879921D6F685f041421C7F482dA")
 
 
 @pytest.fixture
-def y3crv(interface):
-    return interface.yVault("0x84E13785B5a27879921D6F685f041421C7F482dA")
+def vault():
+    return Contract("0xc5bDdf9843308380375a611c18B50Fb9341f502A")
 
 
 @pytest.fixture
-def vault(interface):
-    return interface.veCurveVault("0xc5bDdf9843308380375a611c18B50Fb9341f502A")
-
-
-@pytest.fixture
-def vesting(interface):
-    return interface.CurveVesting("0x575CCD8e2D300e2377B43478339E364000318E2c")
-
+def vesting():
+    return Contract("0x575CCD8e2D300e2377B43478339E364000318E2c")
 
 @pytest.fixture
 def minter(interface):
-    return interface.CurveMinter("0xd061D61a4d941c39E5453435B6345Dc261C2fcE0")
+    return Contract("0xd061D61a4d941c39E5453435B6345Dc261C2fcE0")
 
 
 @pytest.fixture
 def gauges(interface, user):
     ZERO_ADDRESS = "0x0000000000000000000000000000000000000000"
-    registry = interface.CurveRegistry("0x7D86446dDb609eD0F5f8684AcF30380a356b2B4c")
+    registry = Contract("0x7D86446dDb609eD0F5f8684AcF30380a356b2B4c")
     pools = [registry.pool_list(i) for i in range(registry.pool_count())]
     gauges = set(chain.from_iterable([registry.get_gauges(pool)[0] for pool in pools]))
     gauges.discard(ZERO_ADDRESS)
