@@ -10,6 +10,10 @@ def shared_setup(fn_isolation):
 def user(accounts):
     yield accounts.at("0xfd875403b4338a1fa9dcb03AE4d49ED43a9290Bb", force=True)
 
+@pytest.fixture
+def yvecrv_holder(accounts):
+    yield accounts.at("0x1b9524b0F0b9F2e16b5F9e4baD331e01c2267981", force=True)
+    
 
 @pytest.fixture
 def crv():
