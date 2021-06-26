@@ -4,7 +4,7 @@ from brownie import Contract
 from brownie import config
 
 def test_3crv_zapper(zap_3crv, lp_3crv, y3crv, vault, accounts, yvecrv_holder):
-    before_lp_3Crv = y3crv.balanceOf(yvecrv_holder)
+    before_lp_3Crv = lp_3crv.balanceOf(yvecrv_holder)
     before = y3crv.balanceOf(yvecrv_holder)
     lp_3crv.approve(zap_3crv, 2 ** 256 - 1, {"from": yvecrv_holder})
     zap_3crv.zap({"from": yvecrv_holder})
