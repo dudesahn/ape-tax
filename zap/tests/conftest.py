@@ -18,7 +18,7 @@ def crv():
 
 @pytest.fixture
 def lp_3crv():
-    yield Contract("0x6c3F90f043a72FA612cbac8115EE7e52BDe6E490")
+    yield Contract.from_explorer("0x6c3F90f043a72FA612cbac8115EE7e52BDe6E490")
 
 @pytest.fixture
 def y3crv():
