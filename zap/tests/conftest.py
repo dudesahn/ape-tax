@@ -9,7 +9,7 @@ def shared_setup(fn_isolation):
 
 @pytest.fixture
 def user(accounts):
-    return accounts.at("0x431e81e5dfb5a24541b5ff8762bdef3f32f96354", force=True)
+    return accounts.at("0xfd875403b4338a1fa9dcb03AE4d49ED43a9290Bb", force=True)
 
 
 @pytest.fixture
@@ -24,7 +24,7 @@ def lp_3crv(interface):
 
 @pytest.fixture
 def y3crv(interface):
-    return interface.yVault("0x9cA85572E6A3EbF24dEDd195623F188735A5179f")
+    return interface.yVault("0x84E13785B5a27879921D6F685f041421C7F482dA")
 
 
 @pytest.fixture
